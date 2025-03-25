@@ -1,3 +1,8 @@
+@import "../../components/page/page.css";
+@import "../../components/footer/footer.css";
+@import "../../components/header/header.css";
+@import "../../components/logo/logo.css";
+
 td select,
     td input {
       width: 150px;

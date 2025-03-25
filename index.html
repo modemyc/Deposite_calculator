@@ -2,14 +2,29 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="/scripts/index.js" defer></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
     <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/scss/bootstrap.scss">
     <title>Калькулятор вклада</title>
 </head>
 <body>
-    <header></header>
-    <main>
+  <div class="page">
+    <header class="header">
+      <div class="container header__menu">
+        <div class="logo">
+          <img src="/assets/images/лого статика.png" alt="logo" class="logo__static">
+          <img src="/assets/images/лого анимированное.gif" alt="animate" class="logo__animate">
+        </div>
+        <div>
+          <h1>Калькулятор доходности вклада</h1>
+        </div>
+      </div>
+    </header>
+    <main class="p-3 mb-2 bg-dark text-white page__main">
+      <div class="container">
         <form name="calculator">
             <table>
               <tr>
@@ -21,7 +36,7 @@
               <tr>
                 <td>Срок вклада?</td>
                 <td>
-                  <select name="months">
+                  <select name="months" class="form-select">
                     <option value="1">1 (месяц)</option>
                     <option value="3">3 (квартал)</option>
                     <option value="6">6 (полгода)</option>
@@ -63,7 +78,10 @@
             <td style="height:100px">
             </td>
           </table>
+      </div>
     </main>
-    <footer></footer>
+    <footer class="footer"></footer>
+  </div>
+    
 </body>
 </html>
