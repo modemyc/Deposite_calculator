@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="/scripts/index.js" defer></script>
-    <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.js" defer></script>
+    <script src="/components/logo/logo.js" defer></script>
     <link rel="stylesheet" href="/assets/css/main.css">
     <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="/node_modules/bootstrap/scss/bootstrap.scss">
@@ -12,75 +13,93 @@
 </head>
 <body>
   <div class="page">
-    <header class="header">
+    <header class="p-3 bg-secondary-subtle text-secondary-emphasis header">
       <div class="container header__menu">
-        <div class="logo">
-          <img src="/assets/images/лого статика.png" alt="logo" class="logo__static">
-          <img src="/assets/images/лого анимированное.gif" alt="animate" class="logo__animate">
+        <a href="/index.html">
+          <div class="logo">
+            <img src="/assets/images/лого статика.png" alt="logo" class="logo__static">
+            <img src="/assets/images/logo_animated.gif" alt="animated" class="logo__animate">
         </div>
+        </a>
         <div>
           <h1>Калькулятор доходности вклада</h1>
         </div>
       </div>
     </header>
-    <main class="p-3 mb-2 bg-dark text-white page__main">
+    <main class="p-3 bg-dark text-white page__main">
       <div class="container">
-        <form name="calculator">
-            <table>
-              <tr>
-                <td>Первоначальный депозит</td>
-                <td>
-                  <input name="money" type="number" value="10000" required>
-                </td>
-              </tr>
-              <tr>
-                <td>Срок вклада?</td>
-                <td>
+        <div class="mb-5">
+          <h1 class="mb-2">Расчет процентов по вкладам</h1>
+          <p class="lead">С помощью данного онлайн калькулятора можно рассчитать доход полученный по депозиту на вкладе, 
+            <br>как он будет меняться в зависимости от сроков и условий предложенных банком</p>
+        </div>
+        <div class="grid row">
+          <div class="col-md-6">
+            <form name="calculator">
+              <div class="mb-3">
+                <label for="money" class="form-label">Первоначальный депозит</label>
+                <input name="money" class="form-control" type="number" required>
+              </div>
+              <div class="mb-3 form-label">
+                <label>Срок вклада:</label>
                   <select name="months" class="form-select">
                     <option value="1">1 (месяц)</option>
                     <option value="3">3 (квартал)</option>
-                    <option value="6">6 (полгода)</option>
-                    <option value="12" selected>12 (год)</option>
+                    <option value="6" selected>6 (полгода)</option>
+                    <option value="12">12 (год)</option>
                     <option value="18">18 (1.5 года)</option>
                     <option value="24">24 (2 года)</option>
                     <option value="30">30 (2.5 года)</option>
                     <option value="36">36 (3 года)</option>
                     <option value="60">60 (5 лет)</option>
                   </select>
-                </td>
-              </tr>
-              <tr>
-                <td>Годовая процентная ставка?</td>
-                <td>
-                  <input name="interest" type="number" value="16" required>
-                </td>
-              </tr>
-            </table>
-        
-        
-          </form>
-        
-        
-          <table id="diagram">
-            <tr>
-              <th>Было:</th>
-              <th>Станет:</th>
-            </tr>
-            <tr>
-              <th id="money-before"></th>
-              <th id="money-after"></th>
-            </tr>
-            <td style="height:100px">
-              <div style="background: #FF7640;width:40px;height:100px">
-                <div style="background: #006064;width:40px;height:0" id="height-after"></div>
               </div>
-            </td>
-            <td style="height:100px">
-            </td>
-          </table>
+              <div class="mb-3">
+                <label for="interest" class="form-label">Годовая процентная ставка:</label>
+                <input name="interest" class="form-control" type="number" value="16" required>
+              </div>
+          </form>
+          </div>
+          <!-- Доделать -->
+          <div class="col-md-6 flex-column bg-dark bg-gradient text-white information">
+            <div class="mb-3 mt-2">
+              <h3>Результаты расчета</h3>
+            </div>
+            <div class="mb-3">
+              <div class="row mb-2">
+                <div class="mb-1 col">Сумма вклада: </div>
+                <div class="mb-1 col text-end" id="money-before"></div>
+              </div>
+              <div class="row mb-2">
+                <div class="mb-1 col">Доход: </div>
+                <div class="mb-1 col text-end" id="money-income"></div>
+              </div>
+              <div class="row mb-2">
+                <div class="mb-1 col">Сумма в конце срока: </div>
+                <div class="mb-1 col text-end" id="money-after"></div>
+              </div>
+              
+                
+            </div>
+            <div class="progress-stacked">
+              <div class="progress" id="height-after" role="progressbar" aria-label="Segment one" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" style="width: 15%">
+                <div class="progress-bar bg-warning text-dark" id="indicator-bar"></div>
+              </div>
+              <div class="progress" role="progressbar" aria-label="Segment two" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                <div class="progress-bar bg-success"></div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-5">
+            <p class="text-end">
+              Расчет суммы дохода, произведенный калькулятором, является предварительным, <br>окончательно определяется конкретным банком в соответствии с его условиями.
+            </p>
+          </div>
+        </div>
+          
       </div>
     </main>
-    <footer class="footer"></footer>
+    <footer class="p-3 bg-dark-subtle text-dark-emphasis footer text-center">by Konstantin Razinkov</footer>
   </div>
     
 </body>

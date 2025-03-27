@@ -5,6 +5,8 @@ const moneyBefore = document.querySelector('#money-before');
 const moneyAfter = document.querySelector('#money-after');
 const inputMonth = document.querySelector('select[name=months]');
 const indicator = document.querySelector('#height-after');
+const indicatorBar = document.querySelector('#indicator-bar');
+const moneyIncome = document.querySelector('#money-income')
 
 // Глобальные переменные
 let initial = inputMoney.value;
@@ -27,13 +29,14 @@ inputMonth.onchange = function() {
 
 inputMoney.oninput = function(){
   initial = inputMoney.value;
-  moneyBefore.innerHTML = inputMoney.value;
+  moneyBefore.innerHTML = inputMoney.value + ' ₽';
   sumChange();
 }
 
 // формула расчета и отрисовка диаграммы
 function sumChange () {
-  moneyAfter.innerHTML = ((initial * interest / 12 * month) + initial * 1).toFixed(0);
+  let formulaYear = ((initial * interest / 12 * month) + initial * 1).toFixed(0);
+  moneyAfter.innerHTML = formulaYear + ' ₽';
   let percent = interest * 100 / 12 * month;
   if (percent > 100) {
      percent = 100;
@@ -41,7 +44,9 @@ function sumChange () {
   if (initial <= 0){
     percent = 0;
   };
-  indicator.style.height = `${percent}%`;
+  indicator.style.width = `${percent}%`;
+  indicatorBar.innerHTML = `${percent.toFixed(2)}%`;
+  moneyIncome.innerHTML = formulaYear - inputMoney.value + ' ₽';
 }
 
 // // тесты
